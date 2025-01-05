@@ -9,6 +9,8 @@ A library of tools and extensions for Java and Kotlin designed to simplify worki
 - **`MemCacheAsync`**: An interface that defines an asynchronous cache designed for use with the Ratpack framework. It returns a ratpack.Promise, enabling seamless integration with Ratpack’s asynchronous programming model.
 - **`MemCacheRedis`**: An implementation of the MemCacheAsync interface that utilizes Redis as the underlying storage through the Lettuce package. This implementation is ideal for multi-instance applications, as it leverages Redis to provide distributed caching.
 
+The primary goal of both MemCached and MemCacheAsync is to atomically check for the presence of a key and save data only if the key is unique, ensuring consistent and reliable caching behavior.
+
 ## Installation
 
 Add the library to your project by including it in your `build.gradle` or `build.gradle.kts`:
