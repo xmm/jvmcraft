@@ -1,4 +1,4 @@
-package app.xmmdev.jvmcraft.memCached
+package io.github.xmm.jvmcraft.memCached
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper

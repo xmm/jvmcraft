@@ -17,7 +17,7 @@ Add the library to your project by including it in your `build.gradle` or `build
 
 ```kotlin
 dependencies {
-    implementation("app.xmmdev:jvmcraft:0.2-SNAPSHOT")
+    implementation("io.github.xmm:jvmcraft:<VERSION>")
 }
 ```
 

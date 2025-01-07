@@ -1,4 +1,4 @@
-package app.xmmdev.jvmcraft.memCached
+package io.github.xmm.jvmcraft.memCached
 
 import java.time.Instant
 

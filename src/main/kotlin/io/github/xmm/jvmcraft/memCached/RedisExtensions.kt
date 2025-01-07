@@ -1,4 +1,4 @@
-package app.xmmdev.jvmcraft.memCached
+package io.github.xmm.jvmcraft.memCached
 
 import io.lettuce.core.RedisFuture
 import ratpack.exec.Promise
