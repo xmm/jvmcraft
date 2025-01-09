@@ -1,13 +1,13 @@
-package io.github.xmm.jvmcraft.memCached
+package io.github.xmm.jvmcraft.lib.memCached
 
-import ratpack.exec.Promise
 import java.time.Instant
+import java.util.concurrent.CompletableFuture
 
 /**
  * **`MemCachedAsync`**: An interface that defines an asynchronous cache for storing and retrieving key-value pairs.
  *
- * This interface is designed for use with the Ratpack framework and leverages [Promise] for seamless integration
- * with Ratpack’s asynchronous programming model.
+ * This interface is designed for use with Java's CompletableFuture for seamless integration
+ * with asynchronous programming models.
  *
  * Implementations of this interface, like [MemCachedRedis], should handle expiration times for cached entries,
  * with support for optional default expiration values.
@@ -23,9 +23,9 @@ interface MemCachedAsync<Key : Any, Value : Any> {
      * Implementations should handle expiration, returning `null` if the value is expired or not present in the cache.
      *
      * @param key The key whose associated value is to be retrieved.
-     * @return A [Promise] resolving to the cached value, or `null` if the value is not present or has expired.
+     * @return A [CompletableFuture] resolving to the cached value, or `null` if the value is not present or has expired.
      */
-    fun get(key: Key): Promise<Value>
+    fun get(key: Key): CompletableFuture<Value>
 
     /**
      * Stores the given [value] in the cache under the specified [key], with an optional expiration time.
@@ -35,9 +35,9 @@ interface MemCachedAsync<Key : Any, Value : Any> {
      * @param key The key under which the value should be stored.
      * @param value The value to be stored in the cache.
      * @param expiration Optional expiration time for the cache entry. If `null`, the default expiration time is used.
-     * @return A [Promise] resolving to `Unit` when the operation is complete.
+     * @return A [CompletableFuture] resolving to `Unit` when the operation is complete.
      */
-    fun put(key: Key, value: Value, expiration: Instant? = null): Promise<Unit>
+    fun put(key: Key, value: Value, expiration: Instant? = null): CompletableFuture<Unit>
 
     /**
      * Stores the given [value] in the cache only if no value is currently associated with the given [key].
@@ -47,7 +47,9 @@ interface MemCachedAsync<Key : Any, Value : Any> {
      * @param key The key under which the value should be stored.
      * @param value The value to be stored in the cache.
      * @param expiration Optional expiration time for the cache entry. If `null`, the default expiration time is used.
-     * @return A [Promise] resolving to `true` if the value was successfully stored, or `false` if a value already exists for the key.
+     * @return A [CompletableFuture] resolving to `true` if the value was successfully stored, or `false` if a value already exists for the key.
      */
-    fun putIfNotExist(key: Key, value: Value, expiration: Instant? = null): Promise<Boolean>
+    fun putIfNotExist(
+        key: Key, value: Value, expiration: Instant? = null
+    ): CompletableFuture<Boolean>
 }

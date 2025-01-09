@@ -1,0 +1,26 @@
+[versions]
+
+kotlin = "2.0.21"
+lettuce = "6.5.1.RELEASE"
+jackson = "2.18.0"
+slf4j = "1.7.36"
+testcontainers = "2.2.2"
+
+[libraries]
+
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+lettuce-core = { group = "io.lettuce", name = "lettuce-core", version.ref = "lettuce" }
+jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
+jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
+jackson-datatype-jdk8 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jdk8", version.ref = "jackson" }
+jackson-datatype-jsr310 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310", version.ref = "jackson" }
+slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
+
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+testcontainers-redis = { group = "com.redis", name = "testcontainers-redis", version.ref = "testcontainers" }
+
+[plugins]
+
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
+vannitktech-maven-publish = {id = "com.vanniktech.maven.publish", version = "0.30.0"}

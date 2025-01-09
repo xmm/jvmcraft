@@ -1,5 +1,6 @@
-package io.github.xmm.jvmcraft.memCached
+package io.github.xmm.jvmcraft.lib.memCached
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.lettuce.core.codec.RedisCodec
@@ -10,6 +11,7 @@ data class CacheEntry<V>(
   val exp: Instant,
   val value: V
 ) {
+  @JsonIgnore
   fun isExpired(): Boolean {
     return Instant.now().isAfter(exp)
   }

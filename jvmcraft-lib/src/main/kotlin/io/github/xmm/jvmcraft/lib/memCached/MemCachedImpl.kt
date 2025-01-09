@@ -1,11 +1,36 @@
-package io.github.xmm.jvmcraft.memCached
+package io.github.xmm.jvmcraft.lib.memCached
 
 import java.time.Duration
 import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * Implementation of an in-memory cache with time-to-live (TTL) functionality.
+ * **`MemCachedImpl`**: An in-memory implementation of the `MemCached` interface with support for Time-To-Live (TTL).
+ *
+ * This class provides an in-memory caching mechanism where entries are automatically evicted
+ * after their specified TTL duration. It is well-suited for applications that require a lightweight
+ * cache without external dependencies.
+ *
+ * ### Features:
+ * - In-memory caching for fast read/write operations.
+ * - Configurable default TTL for cache entries.
+ * - Thread-safe implementation using `ConcurrentHashMap`.
+ * - Automatic expiration of entries based on their TTL.
+ *
+ * ### Constructor Parameters:
+ * - `defaultTtl`: The default duration for which entries remain in the cache.
+ *
+ * ### Example Usage:
+ * ```kotlin
+ * val defaultTtl = Duration.ofMinutes(5)
+ * val cache = MemCachedImpl<String, String>(defaultTtl)
+ *
+ * cache.put("key", "value")
+ * val value = cache.get("key")
+ * println("Retrieved value: $value") // Outputs: Retrieved value: value
+ *
+ * // Entry will expire after the TTL duration
+ * ```
  *
  * @param Key The type of keys used in this cache.
  * @param Value The type of values stored in this cache.
