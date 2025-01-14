@@ -9,7 +9,8 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.xmm:jvmcraft-lib:2.0.0")
+    implementation(libs.jvmcraft.lib)
+
     implementation(libs.lettuce.core)
     implementation(libs.jackson.databind)
     implementation(libs.jackson.module.kotlin)

@@ -1,3 +1,4 @@
+rootProject.version = libs.versions.jvmcraft.get()
 
 plugins {
     alias(libs.plugins.kotlin.jvm).apply(false)
@@ -7,7 +8,7 @@ plugins {
 
 allprojects {
     group = "io.github.xmm"
-    version = "2.0.0"
+    version = rootProject.version
 
     repositories {
         mavenCentral()

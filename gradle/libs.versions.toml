@@ -1,5 +1,6 @@
 [versions]
 
+jvmcraft = "2.0.1"
 kotlin = "2.0.21"
 lettuce = "6.5.1.RELEASE"
 jackson = "2.18.0"
@@ -7,6 +8,8 @@ slf4j = "1.7.36"
 testcontainers = "2.2.2"
 
 [libraries]
+
+jvmcraft-lib = { group = "io.github.xmm", name = "jvmcraft-lib", version.ref = "jvmcraft" }
 
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 lettuce-core = { group = "io.lettuce", name = "lettuce-core", version.ref = "lettuce" }

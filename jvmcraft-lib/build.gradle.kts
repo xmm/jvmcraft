@@ -7,12 +7,17 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.lettuce.core)
-    implementation(libs.jackson.databind)
-    implementation(libs.jackson.module.kotlin)
-    implementation(libs.jackson.datatype.jdk8)
-    implementation(libs.jackson.datatype.jsr310)
+    compileOnly(libs.lettuce.core)
+    compileOnly(libs.jackson.databind)
+    compileOnly(libs.jackson.module.kotlin)
+    compileOnly(libs.jackson.datatype.jdk8)
+    compileOnly(libs.jackson.datatype.jsr310)
 
+    testImplementation(libs.lettuce.core)
+    testImplementation(libs.jackson.databind)
+    testImplementation(libs.jackson.module.kotlin)
+    testImplementation(libs.jackson.datatype.jdk8)
+    testImplementation(libs.jackson.datatype.jsr310)
     testImplementation(libs.kotlin.test)
     testImplementation(libs.slf4j.simple)
     testImplementation(libs.testcontainers.redis)
