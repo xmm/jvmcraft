@@ -1,15 +1,18 @@
-# Kotlin Utility Library
+# Extension for JVM Libraries
 
-A library of tools and extensions for Java and Kotlin designed to simplify working with various third-party libraries. Currently, it includes two tools for interacting with Memcached.
-
+A library of tools and extensions for Java and Kotlin designed to simplify working with various third-party libraries. It now includes support for reactive programming through the introduction of Reactor-based utilities and maintains robust tools for in-memory and distributed caching.
 ## Features
 
+### **Caching Utilities**
 - **`MemCache`**: An interface that defines a simple in-memory, synchronous cache designed for single-instance applications.
-- **`MemCachedImpl`**: An implementation of the MemCached interface that uses a ConcurrentHashMap, making it thread-safe and well-suited for concurrent environments.
+- **`MemCachedImpl`**: An implementation of the MemCached interface that uses a `ConcurrentHashMap`, making it thread-safe and well-suited for concurrent environments.
 - **`MemCachedAsync`**: An interface that defines an asynchronous cache for storing and retrieving key-value pairs. This interface is designed for use with Java's `CompletableFuture` for seamless integration with asynchronous programming models.
 - **`MemCachedRedis`**: An implementation of the `MemCachedAsync` interface that uses Redis as the underlying storage, leveraging the Lettuce package. This implementation is well-suited for multi-instance applications, as it uses Redis for distributed caching.
 
-The primary goal of both MemCached and MemCacheAsync is to atomically check for the presence of a key and save data only if the key is unique, ensuring consistent and reliable caching behavior.
+### **Reactive Utilities**
+- **`PagingPublisher`**: A reactive publisher designed for efficient asynchronous paging. It supports backpressure and integrates seamlessly with Reactor's `Flux` and reactive-streams.
+    - Dynamically fetches pages of data based on an initial value and a generator function.
+    - Compatible with `reactor-core` and adheres to the reactive-streams specification.
 
 ## Installation
 
@@ -23,7 +26,7 @@ dependencies {
 
 ## Usage Examples
 
-### Using MemCache
+### Using `MemCache`
 
 ```kotlin
 val memCache: MemCached<String, String> = MemCachedImpl(Duration.ofMinutes(5))
@@ -31,10 +34,10 @@ val isSaved = memCache.putIfNotExist("key", "value", ttl = 300)
 assertTrue(isSaved)
 
 val retrieved: String? = memCache.get("key")
-assertEqual("value", retrieved)
+assertEquals("value", retrieved)
 ```
 
-### Using MemCacheAsync
+### Using `MemCacheAsync`
 
 ```kotlin
 val redisClient = RedisClient.create("redis://localhost:6379")
@@ -54,6 +57,26 @@ cache.get("key").thenAccept { value ->
 }
 ```
 
+### Using `PagingPublisher`
+
+```java
+import reactor.core.publisher.Flux;
+import io.github.xmm.jvmcraft.reactor.PagingPublisher;
+
+class Filter {
+  public int max;
+  public Long lastId;
+}
+
+PagingPublisher.create(
+      () -> null,
+      (lastRecord) -> someRepository.findByFilters(
+          filter.withLastId(lastRecord != null ? lastRecord.id() : null))
+);
+publisher.subscribe(System.out::println);
+```
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE.txt file for details.
+
